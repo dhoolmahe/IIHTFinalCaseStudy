@@ -1,0 +1,37 @@
+ .san{
+    overflow:auto;
+    position: relative; 
+    resize: both;
+    color: rgb(15, 15, 221);
+    height: 300px;
+    /* display: inline-block; */
+  }
+
+thead.thead-light th, .card-header {
+   background:rgb(172, 172, 235) ;
+   font-weight: bold ;
+   color: black;
+ }
+
+ div.filter-class {
+  background:lavender !important;
+ }
+
+ .mr3 {
+   margin-right: auto;
+   margin-left: auto;
+ }
+
+ .col-filter {
+  margin-left: 3%;
+  text-align: left;
+  font-weight: bold
+}
+
+.sort-filter {
+  margin-left: 20%;
+  text-align: left;
+  font-weight: bold
+}
+
+  

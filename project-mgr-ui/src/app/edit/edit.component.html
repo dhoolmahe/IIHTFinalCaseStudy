@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="col">
+        <br/>
+    </div>
+  <div class="col">
+      <br/>
+    </div>
+      <form>
+      <div class="col">
+                <div class="form-group row">
+                    <label for="inputProject" class="col-sm-2 col-form-label">Project:</label>
+                    <div class="col-sm-5">
+                        <input #project="ngModel" [(ngModel)]="projectName" class="form-control" name="project" type="text" [disabled]="true" placeholder="Project Name" required/>
+                    </div>
+                </div>
+
+              <div class="form-group row">
+                <label for="inputTask" class="col-sm-2 col-form-label">Task:</label>
+                <div class="col-sm-5">
+                    <input #taskName="ngModel" [(ngModel)]="task.task" class="form-control" name="taskName" type="text" required/>
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                  <label for="inputPriority" class="col-sm-2 col-form-label">Priority:</label>
+                  <div class="col-sm-5">
+                      <input #priority="ngModel" [(ngModel)]="task.priority" class="form-control slider" min="0" max="30" step="1"
+                      name="priority" type="range"/> {{task.priority}}
+                   </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputParentTask" class="col-sm-2 col-form-label">Parent Task:</label>
+                <div class="col-sm-5">
+                    <input #project="ngModel" [(ngModel)]="parentName" class="form-control" name="parent" type="text" [disabled]="true" placeholder="Parent Task" required/>
+                </div>
+            </div>
+  
+              <div class="form-group row">
+                  <label for="inputStartDate" class="col-sm-2 col-form-label">Start Date:</label>
+                  <div class="col-sm-5">
+                      <input #startDate="ngModel" min="{{task.startDate}}" [(ngModel)]="task.startDate" class="form-control" name="stDate" type="date" required/>
+                   </div>                  
+              </div>
+  
+              <div class="form-group row">
+                  <label for="inputEndDate" class="col-sm-2 col-form-label">End Date:</label>
+                  <div class="col-sm-5">
+                      <input #endDate="ngModel" min="{{today}}" [(ngModel)]="task.endDate" class="form-control" name="etDate" type="date"/>
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                    <label for="inputMgr" class="col-sm-2 col-form-label">User:</label>
+                    <div class="col-sm-5">
+                        <input #manager="ngModel" [(ngModel)]="userName" class="form-control" name="manager" type="text" [disabled]="true" placeholder="User Name" required/>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" (click) = "loadUsers()" data-target="#searchUser">
+                            Search User
+                    </button>
+                </div>
+             
+               <!-- Displaying error message Option-->
+            <div class="form-group row">
+                <div *ngIf="!!(errorMsg)" class="alert alert-danger" role="alert"> {{ errorMsg }} </div>
+            </div>
+
+        <div class="col-md-4 text-center"> 
+          <button type="button" class="btn btn-primary mr-3" (click)="onSubmit()">Update</button>
+          <button type="button" class="btn btn-primary mr-3" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+
+     <!-- Modal to select user-->
+  <div class="modal fade" id="searchUser" tabindex="-1" role="dialog" aria-labelledby="searchUserTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="searchUserTitle">Search User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <!-- Search Users-->
+                <div class="form-group row" *ngIf="users?.length > 0">
+                        <label for="inputUser" class="col-sm-2 col-form-label">User:</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" id="userName" name="userName" [(ngModel)]="userId">
+                               <option *ngFor="let user of users" value="{{user.employeeId}}">{{user.firstName}} - {{user.lastName}}</option>
+                            </select>
+                        </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = "onUserSelected()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- End ModalUser selection -->
+</div>

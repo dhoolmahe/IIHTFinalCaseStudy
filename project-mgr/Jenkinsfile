@@ -1,0 +1,40 @@
+pipeline {
+	triggers {
+        pollSCM('H 15 * * *')
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
+    
+   stage('Checkout from SCM GIT') {
+     checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+              doGenerateSubmoduleConfigurations: false, extensions: [], 
+              submoduleCfg: [], 
+              userRemoteConfigs: [[url: 'https://github.com/Sankarthik/FSDCertification.git']]])
+     echo 'Git checkout succeeded'
+   }
+   
+   stage('Build Docker Image') {
+      // Build image from Docker File path
+      sh 'docker build -f "./project-mgr/Dockerfile-Build" -t sankarthik30/project-mgr-boot:"$BUILD_NUMBER" ./project-mgr/'
+   }
+   
+   stage('Pushing Image into Docker Hub') {
+	   	withCredentials([string(credentialsId: 'docker-pwd', variable: 'DockerPwd')]) {
+	    	sh "docker login -u sankarthik30 -p ${DockerPwd}"
+		}
+		
+   		sh 'docker push sankarthik30/project-mgr-boot:"$BUILD_NUMBER"'
+   }
+   
+   stage('Run Docker container') {
+   	
+   	  //Remove existing containers
+      sh 'docker ps --format "{{.ID}}" --filter name=project-mgr-springboot | sort -u | xargs docker rm -f'
+      sh 'docker ps --format "{{.ID}}" --filter name=mysql-standalone | sort -u | xargs docker rm -f'
+      
+      sh 'docker run -p 3306:3306 --name mysql-standalone -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=cogdb -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin -d mysql:latest'
+      sh 'docker run -p 8080:8080 --name project-mgr-boot --link mysql-standalone:mysql -d project-mgr-boot:"$BUILD_NUMBER"'
+   }
+}

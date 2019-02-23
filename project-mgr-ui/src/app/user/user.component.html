@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <div class="col">
+    <br/>
+  </div>
+    <form>    
+    <div class="col-12">
+        <div class="card text-center">
+            <div><br/></div>
+
+            <div class="form-group row">
+              <label for="inputFirstName" class="col-sm-2 col-form-label">FirstName:</label>
+              <div class="col-sm-5">
+                  <input #firstName="ngModel" [(ngModel)]="user.firstName" class="form-control" name="firstName" type="text" placeholder="First Name" required/>
+               </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputLastName" class="col-sm-2 col-form-label">LastName:</label>
+              <div class="col-sm-5">
+                  <input #lastName="ngModel" [(ngModel)]="user.lastName" class="form-control" name="lastName" type="text" placeholder="Last Name" required/>
+               </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmpId" class="col-sm-2 col-form-label">Employee Id:</label>
+                <div class="col-sm-5">
+                    <input #empId="ngModel" [(ngModel)]="user.employeeId" [disabled] = isUpdate class="form-control" (keypress)="numberOnly($event)" minlength="1" maxlength="9"
+                    name="empId" type="text" required/>
+                 </div>
+            </div>
+
+            
+            <!-- Displaying error message Option-->
+            <div class="form-group row">
+                <div *ngIf="!!(errorMsg)" class="alert alert-danger" role="alert"> {{ errorMsg }} </div>
+            </div>
+            
+            <div class="col-md-4 text-center"> 
+              <button type="button" class="btn btn-primary mr-3" *ngIf="!isUpdate" (click)="onSubmit()">Add</button>
+              <button type="button" class="btn btn-primary mr-3" *ngIf="isUpdate" (click)="onUpdate()">Update</button>
+              <button type="reset" class="btn btn-primary mr-3" (click)="reset()">Reset</button>
+            </div>
+        </div></div></form>
+
+      <div class="row">
+          <br/><br/>
+      </div>
+
+      <!-- List Of Users-->
+      <div class="card-body row text-left col-12">
+         <!-- Filter Section-->
+      <div class="row">
+          <div class="col-filter"><label for="userFilter">Search</label></div>
+          <div class="col-sm-5"><input type="text" size = "40" [(ngModel)]="searchFilter" name="searchFilter" class="form-control"
+              id="searchFilter"></div>
+              <div class="col">
+                  <br/><br/>
+              </div>
+      </div>
+          <div class="san col-md-5"> 
+              <div class="col col-filter"><label for="userFilter">Sort:</label></div>
+              <button type="button" class="btn btn-primary btn-sm mr-3" (click)="filterFirstName(searchFilter)">FirstName</button>
+              <button type="button" class="btn btn-primary btn-sm mr-3" (click)="filterLastName(searchFilter)">LastName</button>
+              <button type="button" class="btn btn-primary btn-sm ml-3" (click)="filterEmpId(searchFilter)">Id</button>
+              <button type="reset" class="btn btn-primary btn-sm ml-3" (click)="resetFilter()">Reset</button>
+          </div>
+
+          <table class="table table-hover align-san">
+            <tbody class="tbody">
+              <tr *ngFor="let u of filteredUsers">
+               <td>
+                 <table class="inner-table">
+                      <tr>
+                           <td><b>Emp ID:</b> {{u.employeeId}}</td>
+                      </tr>
+                      <tr>
+                          <td><b>First Name:</b> {{u.firstName}}</td>
+                     </tr>
+                      <tr>
+                        <td><b>Last Name:</b> {{u.lastName}}</td>
+                      </tr>
+                 </table>
+                   
+              </td>
+                <td>
+                  <button type="button" class="btn btn-primary mr-3" (click)="update(u)">Edit</button>
+                  <button type="button" class="btn btn-primary" (click)="delete(u)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         </div>
+</div>
