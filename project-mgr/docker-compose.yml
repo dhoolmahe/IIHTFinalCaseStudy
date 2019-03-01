@@ -16,7 +16,7 @@ services:
       container_name: mysql-standalone
       image: mysql/mysql-server:latest
       environment:
-        MYSQL_DATABASE: cogdb
+        MYSQL_DATABASE: mahi
         MYSQL_ROOT_PASSWORD: admin
         MYSQL_ROOT_HOST: '%'
         MYSQL_USER: admin

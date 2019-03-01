@@ -1,4 +1,4 @@
-### FSD Project Management Case Study ###
+### IIHT FSD Project Management Case Study ###
 --------------------------------------------
 
 Application is to manage the Project and Tasks with the below business functionalities.
@@ -29,11 +29,11 @@ Backend:
 
 GIT Repository
 ---------------
-Public: https://github.com/Sankarthik/FSDCertification
+Public: https://github.com/dhoolmahe/IIHTFinalCaseStudy.git
 
 Docker HUB Repository
 ----------------------
-Backend:  docker pull sankarthik30/project-mgr-springboot:<<tagname>>
+Backend:  docker pull dhoolmahi/project-mgr-springboot:<<tagname>>
 
 
 ### Docker Build Image and Deploy into Docker HUB ###
@@ -51,13 +51,14 @@ My Sql Docker Steps
 Backend Steps
 ---------------
 From the Dockerfile location in docker terminal ->  
+
 		Step 1->    docker build -f Dockerfile -t project-mgr-springboot:1.0 . 
 		
-		Step 2->    docker run -p 8080:8080 project-mgr-springboot (Run alone without DB) - Dont change PORT in docker vm's to avoid nightmares.:)
+		Step 2->    docker run -p 8080:8080 project-mgr-springboot (Run alone without DB) 
 		
 		Step 3 ->   docker run -p 8080:8080 --name project-mgr-springboot --link mysql-standalone:mysql -d project-mgr-springboot  (Run with my SQL)
 		
-        Step 4 ->   docker logs -f mysql-standalone and docker logs -f project-mgr-springboot to verify logs
+      Step 4 ->   docker logs -f mysql-standalone and docker logs -f project-mgr-springboot to verify logs
 		
 		
 Jenkins Steps inside Docker
@@ -70,7 +71,7 @@ Jenkins Steps inside Docker
 
 To run docker inside Jenkins
 ----------------------------
-docker run -u root -p 8088:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "/C/Users/GiridharanS":/home jenkinsci/blueocean
+docker run -u root -p 8088:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "/C/Users/VisvanathanM":/home jenkinsci/blueocean
 
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-scripts; default-src 'self'; style-src 'self' 'unsafe-inline';")
 
