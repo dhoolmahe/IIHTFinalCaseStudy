@@ -2,25 +2,25 @@
     overflow:auto;
     position: relative; 
     resize: both;
-    color: rgb(15, 15, 221);
-    height: 300px;
+    color: rgb(241, 241, 247) ;
+    height: 200px;
     display: inline-block;
   }
 
 thead.thead-light th, .card-header {
-   background:rgb(120, 120, 240) ;
+   background:rgb(241, 241, 247) ;
    font-weight: bold ;
    color: black;
  }
 
  table.inner-table tr {
-  background:rgb(172, 172, 235) ;
+  background:rgb(241, 241, 247) ;
   color: black;
 }
 
 .col-sm-1 {
     margin: 0 auto;
-    background-color: rgb(172, 172, 235);
+    background-color: rgb(241, 241, 247);
     text-align: right;
     font-weight: bold
   }
@@ -36,8 +36,8 @@ thead.thead-light th, .card-header {
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 15px;
-    background: #6c6aec;
+    height: 12px;
+    background: #636369;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -71,7 +71,7 @@ thead.thead-light th, .card-header {
 }
 
 div.col-12 {
-  width:75%;
+  width:55%;
   margin: auto;
-  border: 3px solid rgb(172, 172, 235);
+  border: 1px solid rgb(110, 110, 117);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cts.casestudy.entities.ParentTask;
 import com.cts.casestudy.entities.Task;
 import com.cts.casestudy.service.TaskManagerService;
 
@@ -23,6 +24,11 @@ public class TaskManagerController {
 	@RequestMapping(path="/tasks", method=RequestMethod.GET)
 	public List<Task> findAllTasks(){
 		return service.findAllTasks();
+	}
+	
+	@RequestMapping(path="/ptasks", method=RequestMethod.GET)
+	public List<ParentTask> findAllParentTasks(){
+		return service.findAllParentTasks();
 	}
 	
 	@RequestMapping(path="/tasks/{id}", method=RequestMethod.GET)

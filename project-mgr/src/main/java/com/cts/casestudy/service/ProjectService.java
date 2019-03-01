@@ -35,6 +35,10 @@ public class ProjectService {
 		return projectRepo.findAll();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Project> findAllProjectsWithTask() {
 		 List<Project> projects = new ArrayList<>();
 		 Predicate<Task> isCompleted = ct -> ct.getEndDate() != null && ct.getEndDate().before(new Date());
@@ -52,11 +56,20 @@ public class ProjectService {
 		 return projects;
 	}
 
+	/**
+	 * 
+	 * @param projectId
+	 * @return
+	 */
 	public Project findProject(Integer projectId) {
 		Optional<Project> project = projectRepo.findById(projectId);
 		return project.isPresent() ? project.get() : null;
 	}
 
+	/**
+	 * 
+	 * @param project
+	 */
 	public void addProject(Project project) {
 		if (project != null) {
 			projectRepo.save(project);
@@ -72,10 +85,18 @@ public class ProjectService {
 		}
 	}
 
+	/**
+	 * 
+	 * @param project
+	 */
 	public void updateProject(Project project) {
 		addProject(project);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	public void endProject(Integer id) {
 		Optional<Project> optProject = projectRepo.findById(id);
 		if (optProject.isPresent()) {
@@ -85,6 +106,11 @@ public class ProjectService {
 		}
 	}
 
+	/**
+	 * 
+	 * @param projectId
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private List<Task> retrieveTasksByProject(int projectId) {
 	    Query nativeQuery = entityManager.createNativeQuery("select t.* from task t "

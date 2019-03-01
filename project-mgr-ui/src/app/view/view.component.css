@@ -2,19 +2,19 @@
     overflow:auto;
     position: relative; 
     resize: both;
-    color: rgb(15, 15, 221);
-    height: 300px;
+    color: rgb(39, 39, 41);
+    height: 200px;
     /* display: inline-block; */
   }
 
 thead.thead-light th, .card-header {
-   background:rgb(172, 172, 235) ;
+   background:rgb(241, 241, 247) ;
    font-weight: bold ;
    color: black;
  }
 
  div.filter-class {
-  background:lavender !important;
+  background:rgb(241, 241, 247) !important;
  }
 
  .mr3 {

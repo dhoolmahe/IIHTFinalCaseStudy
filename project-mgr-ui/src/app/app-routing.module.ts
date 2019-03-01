@@ -3,8 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {ViewComponent} from './view/view.component';
 import {AddComponent} from './add/add.component';
 import {EditComponent} from './edit/edit.component';
-import { UserComponent } from './user/user.component';
-import { ProjectComponent } from './project/project.component';
+import {UserComponent} from './user/user.component';
+import {ProjectComponent} from './project/project.component';
 
 const routes: Routes = [
   {path: 'view', component: ViewComponent},

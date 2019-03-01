@@ -1,10 +1,12 @@
 <div class="container-fluid">
+    <div class="col">
+        <br/>
+    </div>
   <div class="col">
     <br/>
   </div>
     <form>
-    <div class="col">
-
+    <div class="col-12">
             <div class="form-group row">
                 <label for="inputProject" class="col-sm-2 col-form-label">Project:</label>
                 <div class="col-sm-5">
@@ -25,7 +27,7 @@
             <div class="form-check parent-check-label row">
                 <input type="checkbox" class="form-check-input" 
                        (ng-model)="isParentTask" id="parentTaskChecked" [checked]="isParentTask" (change)="changeChkBox($event)">
-                <label class="form-check-label" for="isParentTaskChkLabel">Parent Task</label>
+                <label class="form-check-label" for="isParentTaskChkLabel">No Parent Task Required</label>
             </div><br/>
 
             <div class="form-group row">
@@ -42,7 +44,7 @@
                     <input #project="ngModel" [(ngModel)]="parentName" class="form-control" name="parent" type="text" [disabled]="true" placeholder="Parent Task" required/>
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" (click) = "loadParents()" data-target="#parentTaskSearch">
-                        Search
+                        Search1
                 </button>
             </div>
 

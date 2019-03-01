@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Task} from '../model/task';
+import {ParentTask} from '../model/parentTask';
 import { environment } from '../../environments/environment';
 
 
@@ -11,9 +12,14 @@ import { environment } from '../../environments/environment';
 export class TaskService {
   http: HttpClient;
   taskHttpUrl: string = environment.apiUrl + '/tasks/';
+  ptaskHttpUrl: string = environment.apiUrl + '/ptasks/';
 
   constructor(http: HttpClient, private datePipe: DatePipe) {
     this.http = http;
+  }
+
+  getAllParentTasks(): Promise<any> {
+    return this.http.get<ParentTask>(this.ptaskHttpUrl).toPromise().then(value => value);
   }
 
   getAllTasks(): Promise<any> {
