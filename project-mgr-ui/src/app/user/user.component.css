@@ -19,7 +19,7 @@ thead.thead-light th, .card-header {
 }
 
  div.filter-class {
-  background:lavender !important;
+  background:#f8f9fa !important;
  }
 
  .mr3 {
@@ -60,6 +60,9 @@ div.col-12 {
   width:50%;
   margin: auto;
   border: 1px solid rgb(110, 110, 117);
+}
+.card{
+  border : 0px;
 }
 
 /* div.san {

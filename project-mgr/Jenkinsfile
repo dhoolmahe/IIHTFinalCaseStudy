@@ -22,10 +22,10 @@ pipeline {
    
    stage('Pushing Image into Docker Hub') {
 	   	withCredentials([string(credentialsId: 'docker-pwd', variable: 'DockerPwd')]) {
-	    	sh "docker login -u dhoolmahi -p ${DockerPwd}"
+	    	sh "docker login -u mahivdocker -p ${DockerPwd}"
 		}
 		
-   		sh 'docker push dhoolmahi/project-mgr-boot:"$BUILD_NUMBER"'
+   		sh 'docker push mahivdocker/project-mgr-boot:"$BUILD_NUMBER"'
    }
    
    stage('Run Docker container') {

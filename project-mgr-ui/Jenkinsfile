@@ -17,15 +17,15 @@ pipeline {
    
    stage('Build Docker Image') {
       // Build image from Docker File path
-      sh 'docker build -f "./project-mgr-ui/Dockerfile" -t dhoolmahi/project-mgr-ui:"$BUILD_NUMBER" ./project-mgr-ui/'
+      sh 'docker build -f "./project-mgr-ui/Dockerfile" -t mahivdocker/project-mgr-ui:"$BUILD_NUMBER" ./project-mgr-ui/'
    }
    
    stage('Pushing Image into Docker Hub') {
 	   	withCredentials([string(credentialsId: 'docker-pwd', variable: 'DockerPwd')]) {
-	    	sh "docker login -u sankarthik30 -p ${DockerPwd}"
+	    	sh "docker login -u mahivdocker -p ${DockerPwd}"
 		}
 		
-   		sh 'docker push sankarthik30/project-mgr-ui:"$BUILD_NUMBER" '
+   		sh 'docker push mahivdocker/project-mgr-ui:"$BUILD_NUMBER" '
    }
    
    stage('Run Docker container') {
