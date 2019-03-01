@@ -79,7 +79,7 @@ public class TaskManagerServiceTest {
     
     @Test
     public void findUserByTask() {
-		User user = new User(1, "Sankar", "Giridharan");
+		User user = new User(1, "Mahendran", "Visvanathan");
 
 		when(userRepo.findByTaskId(1)).thenReturn(asList(user));
 		assertNotNull(service.findUserByTask(1));

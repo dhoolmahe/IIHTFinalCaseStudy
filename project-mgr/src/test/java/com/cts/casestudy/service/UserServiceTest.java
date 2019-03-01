@@ -57,29 +57,12 @@ public class UserServiceTest {
 		assertNotNull(service.findUserByProject(1));
 	}
 
-	/*@Test
-	public void findUserByTask() {
-		if(service.findUser(1) == null) {
-			addUser();
-		}
-		addTask();
-		final Optional<Task> optTask = taskRepo.findByTask("User Task").stream().findFirst();
-		if(optTask.isPresent()) {
-			Task task = optTask.get();
-
-			assertNotNull(service.findUserByTask(task.getId()));
-		}
-		User user = new User(1, "Sankar", "Giridharan");
-
-		when(userRepo.findByTaskId(1)).thenReturn(asList(user));
-		assertNotNull(service.findUserByTask(1));
-	}*/
 
 	@Test
 	public void updateUser() {
 		// addUser();
 		final User user = service.findUser(1);
-		user.setFirstName("Karthik");
+		user.setFirstName("Mahi");
 		user.setLastName("IIHT");
 
 		service.updateUser(user);
@@ -91,7 +74,7 @@ public class UserServiceTest {
 
 	@Test
 	public void addUser() {
-		final User user = new User(1, "Sankar", "Giridharan");
+		final User user = new User(1, "Mahendran", "Visvanathan");
 		service.addUser(user);
 	}
 
@@ -103,7 +86,6 @@ public class UserServiceTest {
 	private void addProject() {
 		Project project = new Project(1, "Project 1", valueOf(now()), valueOf(now().plusDays(10)), 5);
 		project.setManagerId(1);
-
 		projService.addProject(project);
 	}
 }

@@ -42,7 +42,7 @@ public class UserControllerTest {
 	
 	@Test
 	public void findAllUsers() throws Exception {
-		User user = new User(1, "Sankar", "Giridharan");
+		User user = new User(1, "Mahendran", "Visvanathan");
 		
 		when(service.findAllUsers()).thenReturn(asList(user));
 		

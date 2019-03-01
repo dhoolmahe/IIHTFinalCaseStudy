@@ -33,7 +33,7 @@ Public: https://github.com/dhoolmahe/IIHTFinalCaseStudy.git
 
 Docker HUB Repository
 ----------------------
-Backend:  docker pull dhoolmahi/project-mgr-springboot:<<tagname>>
+Backend:  docker pull mahivdocker/project-mgr-springboot:<<tagname>>
 
 
 ### Docker Build Image and Deploy into Docker HUB ###

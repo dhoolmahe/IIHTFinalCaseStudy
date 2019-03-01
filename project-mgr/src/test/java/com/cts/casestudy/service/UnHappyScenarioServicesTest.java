@@ -94,7 +94,7 @@ public class UnHappyScenarioServicesTest {
 	             valueOf(now()), valueOf(now().plusDays(10)), 
 	             5);
 		
-		User user = new User(3010, "Sankar", "Giridharan");
+		User user = new User(3010, "Mahendran", "Visvanathan");
 		
 		when(taskRepo.findById(task.getParentTask().getId())).thenReturn(Optional.of(task));
 		when(parentRepo.findById(task.getParentTask().getId())).thenReturn(Optional.empty());
@@ -128,7 +128,7 @@ public class UnHappyScenarioServicesTest {
 	
 	@Test(expected = RuntimeException.class)
     public void addUserWhichAlreadyExist() {
-		User user = new User(3010, "Sankar", "Giridharan");
+		User user = new User(3010, "Mahendran", "Visvanathan");
 
 		when(userRepo.findById(3010)).thenReturn(Optional.of(user));
 		userService.addUser(user);
