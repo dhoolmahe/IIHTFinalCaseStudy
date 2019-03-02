@@ -42,13 +42,13 @@ Backend:
 
 GIT Repository
 ---------------
-Public: https://github.com/Sankarthik/FSDCertification
+Public: https://github.com/dhoolmahe/IIHTFinalCaseStudy.git
 
 Docker HUB Repository
 ----------------------
-Frontend: docker pull sankarthik30/project-mgr-ui:<<tagname>>
+Frontend: docker pull mahivdocker/project-mgr-ui:<<tagname>>
 
-Backend:  docker pull sankarthik30/project-mgr-springboot:<<tagname>>
+Backend:  docker pull mahivdocker/project-mgr-springboot:<<tagname>>
 
 
 ### Docker Build Image and Deploy into Docker HUB ###
@@ -89,7 +89,7 @@ Jenkins Steps inside Docker
 
 To run docker inside Jenkins
 ----------------------------
-docker run -u root -p 8088:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "/C/Users/GiridharanS":/home jenkinsci/blueocean
+docker run -u root -p 8088:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v "/C/Users/VisvanathanM":/home jenkinsci/blueocean
 
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-scripts; default-src 'self'; style-src 'self' 'unsafe-inline';")
 
