@@ -1,4 +1,4 @@
-### FSD Project Management Case Study ###
+### IIHT FSD Project Management Case Study ###
 --------------------------------------------
 
 Application is to manage the Project and Tasks with the below business functionalities.
