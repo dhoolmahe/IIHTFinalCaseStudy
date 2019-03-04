@@ -17,7 +17,7 @@ pipeline {
    
    stage('Build Docker Image') {
       // Build image from Docker File path
-      sh 'docker build -f "./project-mgr/Dockerfile-Build" -t dhoolmahi/project-mgr-boot:"$BUILD_NUMBER" ./project-mgr/'
+      sh 'docker build -f "./project-mgr/Dockerfile-Build" -t mahivdocker/project-mgr-boot:"$BUILD_NUMBER" ./project-mgr/'
    }
    
    stage('Pushing Image into Docker Hub') {
