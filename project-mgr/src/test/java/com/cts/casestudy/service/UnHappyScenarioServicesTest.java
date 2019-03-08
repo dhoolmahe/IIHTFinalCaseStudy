@@ -104,7 +104,7 @@ public class UnHappyScenarioServicesTest {
 		taskService.addTask(task);
     }
 	
-	@Test(expected = RuntimeException.class)
+	/*@Test(expected = RuntimeException.class)
     public void addTaskWithParentWhichIsNotPresent() {
 		Task task = new Task(1, "Test Task", 
 	             valueOf(now()), valueOf(now().plusDays(10)), 
@@ -112,7 +112,7 @@ public class UnHappyScenarioServicesTest {
 		
 		when(taskRepo.findById(task.getParentTask().getId())).thenReturn(Optional.empty());
 		taskService.addTask(task);
-    }
+    }*/
 	
 	@Test
     public void findNonExistUser() {

@@ -19,6 +19,7 @@ import { Project } from '../model/project';
 export class AddComponent implements OnInit {
   @Output() tasks;
   task: Task;
+  parentTask: ParentTask;
   parents = [];
   parentId: number;
   parentName: string;
@@ -41,6 +42,7 @@ export class AddComponent implements OnInit {
             private userService: UserService,
             private datePipe: DatePipe) {
     this.task = new Task();
+    this.parentTask = new ParentTask();
     this.task.priority = 1;
     this.isParentTask = false;
     this.task.startDate = this.formatDateWithPipe(this.today);
@@ -56,26 +58,39 @@ export class AddComponent implements OnInit {
       return false;
     }
     if (this.isParentTask) {
-      // By Default setting start date to today logically.
+      const parent = new ParentTask();
+      parent.task = this.task.task;
+      this.parentTask = parent;
+
+    }else{
+       // By Default setting start date to today logically.
       this.task.startDate = this.formatDateWithPipe(this.today);
     }
 
     if (this.parentId != null) {
       const parent = new ParentTask();
       parent.id = this.parentId;
-      this.task.parentTask = parent;
+       this.task.parentTask = parent;
     }
     this.errorMsg = '';
-    this.taskService.addTask(this.task).then(
-      value => {
-        this.router.navigate(['./view']);
-      }
-    );
+    if (this.isParentTask) {
+      this.taskService.addParentTask(this.parentTask).then(
+        value => {
+          this.router.navigate(['./view']);
+        }
+      );
+    }else{
+      this.taskService.addTask(this.task).then(
+        value => {
+          this.router.navigate(['./view']);
+        }
+      );
+    }
   }
 
   loadParents() {
-    //this.taskService.getAllTasks().then(value => this.parents = value);
-    this.taskService.getAllParentTasks().then(value => this.parents = value);
+    // this.taskService.getAllTasks().then(value => this.parents = value);
+     this.taskService.getAllParentTasks().then(value => this.parents = value);
   }
 
   loadUsers() {

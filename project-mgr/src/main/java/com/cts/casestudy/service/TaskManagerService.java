@@ -48,6 +48,17 @@ public class TaskManagerService {
 		Optional<Task> task = repo.findById(id);
 		return task.isPresent() ? task.get() : null;
 	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ParentTask findParentTask(Integer id) {
+		Optional<ParentTask> task = parentRepo.findById(id);
+		return task.isPresent() ? task.get() : null;
+	}
 
 	/**
 	 * 
@@ -58,6 +69,14 @@ public class TaskManagerService {
 		setProject(task);
 		repo.save(task);
 		setUser(task);
+	}
+	
+	/**
+	 * 
+	 * @param task
+	 */
+	public void addParentTask(ParentTask task) {
+		parentRepo.save(task);
 	}
 
 	/**

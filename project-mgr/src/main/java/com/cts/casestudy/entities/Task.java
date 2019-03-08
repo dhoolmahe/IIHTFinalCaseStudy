@@ -47,7 +47,7 @@ public class Task {
 	@Min(0) @Max(30)
 	private Integer priority;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "PARENT_TASK_ID")
 	private ParentTask parentTask;
 	

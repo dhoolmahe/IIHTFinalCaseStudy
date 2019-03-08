@@ -38,6 +38,10 @@ export class TaskService {
     return this.http.post(this.taskHttpUrl, t).toPromise().then(value => value);
   }
 
+  addParentTask(t: ParentTask): Promise<any> {
+    return this.http.post(this.ptaskHttpUrl, t).toPromise().then(value => value);
+  }
+
   updateTask(id: number, t: Task): Promise<any> {
     return this.http.put(this.taskHttpUrl, t).toPromise().then(value => value);
   }

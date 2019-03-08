@@ -46,6 +46,11 @@ public class TaskManagerController {
 		 service.addTask(task);
 	}
 	
+	@RequestMapping(path="/ptasks", method=RequestMethod.POST)
+	public void addParentTask(@RequestBody ParentTask task) {
+		 service.addParentTask(task);
+	}
+	
 	@RequestMapping(path="/tasks", method=RequestMethod.PUT)
 	public void updateTask(@RequestBody Task task){
 		 service.updateTask(task);
