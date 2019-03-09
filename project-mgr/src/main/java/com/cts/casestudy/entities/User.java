@@ -23,18 +23,12 @@ public class User {
 	@Size(max = 100)
 	private String lastName;
 	
-	/*
-	 * One to Many should be handled here in a real time thinking as it increases lot of work,
-	 * To simplify using One To One mapping fo now
-	 */
+	 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "PROJECT_ID")
 	private Project project;
 	
-	/*
-	 * One to Many should be handled here in a real time thinking as it increases lot of work,
-	 * To simplify using One To One mapping fo now
-	 */
+	 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TASK_ID")
 	private Task task;

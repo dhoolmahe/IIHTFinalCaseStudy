@@ -64,14 +64,20 @@ export class AddComponent implements OnInit {
 
     }else{
        // By Default setting start date to today logically.
-      this.task.startDate = this.formatDateWithPipe(this.today);
+       const ctask = new Task();
+       console.log(this.parentId);
+       console.log(this.parentName);
+       ctask.id = this.parentId;
+       ctask.task = this.parentName;
+       this.task.parentTask = ctask;
+       this.task.startDate = this.formatDateWithPipe(this.today);
     }
 
-    if (this.parentId != null) {
-      const parent = new ParentTask();
-      parent.id = this.parentId;
-       this.task.parentTask = parent;
-    }
+    // if (this.parentId != null) {
+    //   const parent = new ParentTask();
+    //   parent.id = this.parentId;
+    //   this.task.parentTask = parent;
+    // }
     this.errorMsg = '';
     if (this.isParentTask) {
       this.taskService.addParentTask(this.parentTask).then(
@@ -171,6 +177,7 @@ export class AddComponent implements OnInit {
         this.parentName = parent.task;
       }
     });
+   // this.task.parentTask.id = this.parentId;
   }
 
   changeChkBox(event) {

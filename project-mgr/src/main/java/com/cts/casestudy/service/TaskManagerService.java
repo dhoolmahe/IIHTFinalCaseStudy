@@ -128,7 +128,7 @@ public class TaskManagerService {
 	 * 
 	 * @param task
 	 */
-	private void setParentTask(Task task) {
+	/*private void setParentTask(Task task) {
 		if (task.getParentTask() != null) {
 			Optional<Task> optTask = repo.findById(task.getParentTask().getId());
 			if (!optTask.isPresent()) {
@@ -139,6 +139,18 @@ public class TaskManagerService {
 				task.setParentTask(pt.get());
 			} else {
 				ParentTask parentTask = new ParentTask(task.getParentTask().getId(), optTask.get().getTask());
+				task.setParentTask(parentTask);
+			}
+		}
+	}*/
+	
+	private void setParentTask(Task task) {
+		if (task.getParentTask() != null) {
+			Optional<ParentTask> pt = parentRepo.findById(task.getParentTask().getId());
+			if (pt.isPresent()) {
+				task.setParentTask(pt.get());
+			} else {
+				ParentTask parentTask = new ParentTask(task.getParentTask().getId(), task.getParentTask().getTask());
 				task.setParentTask(parentTask);
 			}
 		}
