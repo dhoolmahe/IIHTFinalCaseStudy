@@ -23,6 +23,14 @@ public class ParentTask {
 		return id;
 	}	
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
+	}
+
 	public String getTask() {
 		return task;
 	}

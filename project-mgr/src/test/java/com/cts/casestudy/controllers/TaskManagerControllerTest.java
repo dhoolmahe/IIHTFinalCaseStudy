@@ -60,6 +60,22 @@ public class TaskManagerControllerTest {
         verifyNoMoreInteractions(service);
 	}
 	
+	
+	@Test
+	public void findAllParentTasks() throws Exception {
+		ParentTask task = new ParentTask(1, "Parent Test Task");
+		
+		when(service.findAllParentTasks()).thenReturn(asList(task));
+		
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/ptasks")
+				.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)));
+		
+		verify(service, times(1)).findAllParentTasks();
+        verifyNoMoreInteractions(service);
+	}
+	
 	@Test
 	public void findTaskById() throws Exception {
 		Task task = new Task(1, "Test Task", 
@@ -106,6 +122,21 @@ public class TaskManagerControllerTest {
 				.andExpect(MockMvcResultMatchers.status().isOk());	
 		ArgumentCaptor<Task> taskCapture = ArgumentCaptor.forClass(Task.class);
 		verify(service, times(1)).addTask(taskCapture.capture());
+        verifyNoMoreInteractions(service);
+	}
+	
+	@Test
+	public void addParentTask() throws Exception {
+		ParentTask task = new ParentTask(1, "Parent Test Task");
+		Mockito.doNothing().when(service).addParentTask(task);
+		
+		this.mockMvc.perform(MockMvcRequestBuilders.post("/ptasks")
+				.contentType(APPLICATION_JSON_UTF8)
+				.content(convertObjectToJsonBytes(task))
+				.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+				.andExpect(MockMvcResultMatchers.status().isOk());	
+		ArgumentCaptor<ParentTask> taskCapture = ArgumentCaptor.forClass(ParentTask.class);
+		verify(service, times(1)).addParentTask(taskCapture.capture());
         verifyNoMoreInteractions(service);
 	}
 	

@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.cts.casestudy.entities.ParentTask;
 import com.cts.casestudy.entities.Task;
 import com.cts.casestudy.entities.User;
 import com.cts.casestudy.repos.UserRepository;
@@ -37,6 +38,14 @@ public class TaskManagerServiceTest {
     	List<Task> tasks = taskService.findAllTasks();
     	assertNotNull(tasks);
     	assertThat(tasks, hasSize(1));
+    }
+	
+	@Test
+    public void findAllParentTasks() {
+		addParentTask();
+    	List<ParentTask> tasks = taskService.findAllParentTasks();
+    	assertNotNull(tasks);
+    	assertThat(tasks, hasSize(2));
     }
 
     @Test
@@ -66,6 +75,14 @@ public class TaskManagerServiceTest {
         task.setStartDate(new Date());
         taskService.addTask(task);
     }
+    
+    @Test
+    public void addParentTask() {
+        final ParentTask task = new ParentTask();
+        task.setTask("ParentTest Task");
+        taskService.addParentTask(task);
+    }
+
 
     @Test
     public void deleteTask() {

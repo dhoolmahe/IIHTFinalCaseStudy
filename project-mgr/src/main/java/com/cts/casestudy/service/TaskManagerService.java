@@ -31,10 +31,18 @@ public class TaskManagerService {
 	@Autowired
 	UserRepository userRepo;
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Task> findAllTasks() {
 		return repo.findAll();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ParentTask> findAllParentTasks() {
 		return parentRepo.findAll();
 	}
@@ -125,25 +133,9 @@ public class TaskManagerService {
 	}
 
 	/**
-	 * 
+	 * 	
 	 * @param task
 	 */
-	/*private void setParentTask(Task task) {
-		if (task.getParentTask() != null) {
-			Optional<Task> optTask = repo.findById(task.getParentTask().getId());
-			if (!optTask.isPresent()) {
-				throw new RuntimeException("No Task id is created");
-			}
-			Optional<ParentTask> pt = parentRepo.findById(task.getParentTask().getId());
-			if (pt.isPresent()) {
-				task.setParentTask(pt.get());
-			} else {
-				ParentTask parentTask = new ParentTask(task.getParentTask().getId(), optTask.get().getTask());
-				task.setParentTask(parentTask);
-			}
-		}
-	}*/
-	
 	private void setParentTask(Task task) {
 		if (task.getParentTask() != null) {
 			Optional<ParentTask> pt = parentRepo.findById(task.getParentTask().getId());
